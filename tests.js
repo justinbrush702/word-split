@@ -1,5 +1,5 @@
-var recursive = require('./recursive');
-var optimal = require('./optimal');
+var recursive = require('./solutions/recursive');
+var optimal = require('./solutions/optimal');
 
 // Hardcode solution to run tests against
 var solution = optimal;
