@@ -1,5 +1,5 @@
 /**
-* Optimal Solution
+* Optimal Solution (via dynamic programming)
 *
 * Fill matrix with information regarding input string.
 * Fill half of the matrix diagonally, starting from the top left corner to the bottom right corner.
