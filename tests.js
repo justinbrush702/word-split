@@ -26,10 +26,8 @@ var resultLine = "=============================================> ";
 
 var testCase = function (input, dictionary, expect) {
   console.log("Input: " + JSON.stringify(input));
-  console.log("Dictionary:");
-  console.log(dictionary);
-  console.log("Expected Answer:");
-  console.log(expect);
+  console.log("Dictionary: " + JSON.stringify(dictionary));
+  console.log("Expected Answer: " + JSON.stringify(expect));
   console.log(resultLine + (areEqual(solution.solve(input, dictionary), expect) ? 'SUCCESS' : 'FAIL'));
   console.log();
 };
