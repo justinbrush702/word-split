@@ -8,7 +8,7 @@ Given an input string and a dictionary, return a splitting of the string into wo
 
 ### The Solutions
 * The recursive solution breaks up the input as it finds words and repeats for the rest of the substring. It will find an answer if one exists, but it has an exponential runtime.
-* The optimal solution uses dynamic programming, storing information about each subset of characters as it fills a matrix with data points. While space complexity is slightly increased, runtime complexity drops from exponential to polynomial. I educated myself on using dynamic programming for this solution from watching [Tushar Roy](https://www.youtube.com/watch?v=WepWFGxiwRs).
+* The optimal solution uses dynamic programming, storing information about each subset of characters as it fills a matrix with data points. While space complexity is slightly increased, runtime complexity drops from exponential to polynomial. I educated myself on using dynamic programming for this solution by watching [Tushar Roy](https://www.youtube.com/watch?v=WepWFGxiwRs).
 
 ### Rules
 * Exact Matching - potential words must match exactly to a word in the dictionary, including capital letters
