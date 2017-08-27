@@ -1,17 +1,20 @@
 /**
 * Optimal Solution
+*
+* Fill matrix with information regarding input string.
+* Fill half of the matrix diagonally, starting from the top left corner to the bottom right corner.
+* Then move to the right and fill diagonally again.
+* Each position determines whether the substring of the input provided by the coordinates of the position is
+* * a word in the dictionary or
+* * a concatenation of words in the dictionary.
+*
 **/
-console.log();
 
-var list1 = [1,2];
-var list2 = [3,4];
+var matrix; // Declare matrix as a global variable
 
-var listConcat = list1.concat(list2);
+// console.log();
 
-// console.log(listConcat);
-
-
-
+// Creates an "empty" datapoint for input into the matrix
 var createNewDataPoint = function () {
   return {
     // Can the characters in the range of this coordinate be split into words in the dictionary?
@@ -27,11 +30,10 @@ var createNewDataPoint = function () {
   };
 };
 
-
-
+// ToString function for easy readability for debugging
 var dpToString = function(dp) {
   // return dp.canSplit ? dp.canSplit + "-" + (dp.isCompleteWord ? dp.isCompleteWord : dp.splitPoint) : dp.canSplit
-  var output = "";
+  var output;
   if (!dp.canSplit) {
     output = "F   ";
   } else {
@@ -42,11 +44,10 @@ var dpToString = function(dp) {
     }
   }
   return output;
-}
+};
 
 
-var matrix;
-
+// Main function for solution
 var optimal = function (input, dictionary) {
 
   // Initialize matrix
@@ -59,20 +60,16 @@ var optimal = function (input, dictionary) {
     matrix.push(row);
   }
 
-  // Fill matrix with information regarding input string
-  for (var i = 0; i < input.length; i++) {
-    for (var j = i; j < input.length; j++) {
-
-    }
-  }
-
-
-  var currLength = 1; // number of characters we are observing
+  // Start looking at the smallest possible words - single characters
+  var currLength = 1; // Number of characters we are observing
 
   while (currLength <= input.length) {
+    // Observe the number of "words" in this string that are of the currLength
+    // Shift the frame down the string until the end of the frame hits the end of the input
     for (var i = 0; (i + currLength) <= input.length; i++) {
       var currWord = input.substring(i, i + currLength);
       var dp = createNewDataPoint();
+
       if (isWord(currWord, dictionary)) {
         dp.canSplit = true;
         dp.isCompleteWord = true;
@@ -80,37 +77,36 @@ var optimal = function (input, dictionary) {
         // Loop through range, checking split points
         var solved = false;
         for (j = 0; j < currWord.length; j++) {
+          // If currWord can be split somewhere, and the two components originate from successful splittings
           if (!solved && matrix[i][i + j].canSplit && matrix[j + 1][i + currWord.length - 1].canSplit) {
             dp.canSplit = true;
-            dp.splitPoint = j;
+            dp.splitPoint = j; // Keep track of the split point (used for returning list of words)
             solved = true;
           }
         }
       }
-      matrix[i][i + currLength - 1] = dp;
+      matrix[i][i + currLength - 1] = dp; // Add datapoint to the matrix
     }
     currLength++;
   }
 
   printMatrix();
 
-  // If matrix[0][j-1] === true, build the list of words found and return
-  // Else, return null
-
+  // If the top right corner can be split, then the input string can be successfully split into words.
+  // Return the list of words found.
   if (matrix[0][matrix.length - 1].canSplit === true) {
     return buildList(input);
-    // return 'success';
   } else {
     return null;
   }
-
 };
 
-
+// Wrapper function to recursive function to extract words from input based on split points
 var buildList = function (input) {
   return findWords(0, input.length - 1, input);
 };
 
+// Recursive function for finding words based on split points
 var findWords = function (startIndex, endIndex, input) {
   // console.log(startIndex + " " + endIndex);
   var dp = matrix[startIndex][endIndex];
@@ -133,29 +129,20 @@ var isWord = function (word, dictionary) {
   return false;
 }
 
-
+// Used for debugging
 var printMatrix = function () {
   for (var i = 0; i < matrix.length; i++) {
-    // var row = [];
     var output = "";
     for (var j = 0; j < matrix.length; j++) {
-      // row.push(dpToString(matrix[i][j]));
       output += dpToString(matrix[i][j]) + ", ";
     }
-    // console.log(row);
     console.log(output);
   }
   console.log();
 };
 
-// printMatrix();
-// console.log(optimal("helloworld", ["hello"]));
-
 console.log(optimal("iamace", ["i", "am", "ace", "a"]));
-console.log();
+// console.log();
 
 console.log(optimal("helloworld", ["a", "he", "hello", "world"]));
-console.log();
-
-
-// console.log(dpToString(createNewDataPoint()));
+// console.log();
