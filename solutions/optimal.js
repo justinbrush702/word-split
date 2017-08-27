@@ -64,6 +64,13 @@ var optimal = function (input, dictionary) {
     return null;
   }
 
+  // Initialize dictionary for faster lookup time (O(n) --> O(1))
+  var dictionarySet = {};
+  for (var i = 0; i < dictionary.length; i++) {
+    dictionarySet[dictionary[i]] = true;
+  }
+  dictionary = dictionarySet;
+
   // Initialize matrix
   matrix = [];
   for (var i = 0; i < input.length; i++) {
@@ -135,13 +142,8 @@ var findWords = function (startIndex, endIndex, input) {
 
 // Function to determine whether the given characters are a word in the dictionary
 var isWord = function (word, dictionary) {
-  for (var i = 0; i < dictionary.length; i++) {
-    if (dictionary[i] === word) {
-      return true;
-    }
-  }
-  return false;
-}
+  return dictionary[word];
+};
 
 // Used for debugging
 var printMatrix = function () {
