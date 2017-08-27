@@ -44,6 +44,7 @@ var testCase = function (input, dictionary, expect) {
 console.log();
 
 testCase("helloworld", ["a", "he", "hello", "world"], ["hello", "world"]);
+testCase("hello world", [" ", "a", "he", "hello", "world"], ["hello", " ", "world"]);
 testCase("iamace", ["a", "i", "am", "ace"], ["i", "am", "ace"]);
 testCase("iamaceiamace", ["a", "i", "am", "ace"], ["i", "am", "ace", "i", "am", "ace"]);
 testCase("iamace", ["a", "I", "am", "ace"], null);
