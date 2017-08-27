@@ -55,7 +55,7 @@ var optimal = function (input, dictionary) {
     return [];
   }
 
-  // Null edge cases
+  // Edge cases
   if (!input || !input.length || input.length <= 0) {
     return null;
   }

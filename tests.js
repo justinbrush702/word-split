@@ -10,6 +10,14 @@ var areEqual = function (answer, expect) {
     return true;
   }
 
+  if (answer === null && expect !== null) {
+    return false;
+  }
+
+  if (answer !== null && expect === null) {
+    return false;
+  }
+
   if (answer.length !== expect.length) {
     return false;
   }

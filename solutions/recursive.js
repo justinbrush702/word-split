@@ -17,10 +17,21 @@
 // dictionary --> list of words in the dictionary
 var wordSplit = function (input, dictionary) {
 
-  if (input === null || !dictionary) {
+  // Empty string should not return null
+  if (input === "") {
+    return [];
+  }
+
+  // Edge cases
+  if (!input || !input.length || input.length <= 0) {
     return null;
   }
 
+  if (!dictionary || !dictionary.length || dictionary.length <= 0) {
+    return null;
+  }
+
+  // Find words in string (if a splitting is possible).
   var words = findWords(input, dictionary);
 
   if (!words) {
