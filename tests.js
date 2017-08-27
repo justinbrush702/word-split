@@ -4,6 +4,7 @@ var optimal = require('./solutions/optimal');
 // Hardcode solution to run tests against
 var solution = optimal;
 
+// Function to determine whether the actual and expected answers are equal
 var areEqual = function (answer, expect) {
   if (answer === null && expect === null) {
     return true;
