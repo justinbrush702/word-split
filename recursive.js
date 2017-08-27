@@ -1,7 +1,7 @@
 /**
 * Recursive Solution
 *
-* Look at given string, find breakpoints (good words)
+* Look at given string, find breakpoints (good words).
 * Once I find a breakpoint, recurse. Look at the rest of the substring.
 *
 * BASE CASE --> empty string (return an empty list)
