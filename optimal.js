@@ -50,6 +50,20 @@ var dpToString = function(dp) {
 // Main function for solution
 var optimal = function (input, dictionary) {
 
+  // Empty string should not return null
+  if (input === "") {
+    return [];
+  }
+
+  // Null edge cases
+  if (!input || !input.length || input.length <= 0) {
+    return null;
+  }
+
+  if (!dictionary || !dictionary.length || dictionary.length <= 0) {
+    return null;
+  }
+
   // Initialize matrix
   matrix = [];
   for (var i = 0; i < input.length; i++) {
@@ -90,7 +104,7 @@ var optimal = function (input, dictionary) {
     currLength++;
   }
 
-  printMatrix();
+  // printMatrix();
 
   // If the top right corner can be split, then the input string can be successfully split into words.
   // Return the list of words found.
@@ -142,7 +156,23 @@ var printMatrix = function () {
 };
 
 console.log(optimal("iamace", ["i", "am", "ace", "a"]));
-// console.log();
+console.log();
+
+console.log(optimal("iamaceiamaceiamaceiamaceiamaceiamace", ["i", "am", "ace", "a"]));
+console.log();
 
 console.log(optimal("helloworld", ["a", "he", "hello", "world"]));
-// console.log();
+console.log();
+
+console.log(optimal("watchheworldabc", ["a", "he", "hello", "world"]));
+console.log();
+
+console.log(optimal("", ["a", "he", "hello", "world"]));
+console.log();
+
+console.log(optimal(null, null));
+console.log(optimal("null", []));
+console.log(optimal("check", {}));
+console.log(optimal({6:7,a:8,list:['a','hello']}, ["a", "he", "hello", "world"]));
+console.log(optimal({6:7,a:8,list:['a','hello']}, null));
+console.log();
