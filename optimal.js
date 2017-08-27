@@ -155,24 +155,7 @@ var printMatrix = function () {
   console.log();
 };
 
-console.log(optimal("iamace", ["i", "am", "ace", "a"]));
-console.log();
 
-console.log(optimal("iamaceiamaceiamaceiamaceiamaceiamace", ["i", "am", "ace", "a"]));
-console.log();
-
-console.log(optimal("helloworld", ["a", "he", "hello", "world"]));
-console.log();
-
-console.log(optimal("watchheworldabc", ["a", "he", "hello", "world"]));
-console.log();
-
-console.log(optimal("", ["a", "he", "hello", "world"]));
-console.log();
-
-console.log(optimal(null, null));
-console.log(optimal("null", []));
-console.log(optimal("check", {}));
-console.log(optimal({6:7,a:8,list:['a','hello']}, ["a", "he", "hello", "world"]));
-console.log(optimal({6:7,a:8,list:['a','hello']}, null));
-console.log();
+module.exports.solve = function (input, dictionary) {
+  return optimal(input, dictionary);
+};

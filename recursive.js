@@ -75,7 +75,7 @@ var isWord = function (word, dictionary) {
   return false;
 }
 
-var input = "helloworld";
-var dictionary = ["I", "hello", "hell", "world", "he"];
 
-console.log(wordSplit(input, dictionary));
+module.exports.solve = function (input, dictionary) {
+  return wordSplit(input, dictionary);
+};
